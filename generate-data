@@ -2,15 +2,30 @@
 
 require_relative "parabola"
 
-if ARGV.size != 4
+def usage
+   cmd = $0
+   argDesc = ["-b <beg>", "-e <end>", "-s <steps>", "-a <accel>", "-h <t0>",
+              "-k <z0>"]
    puts <<EOF
 
 Send to standard output the coordinates for a parabolic trajectory in three
-dimensions.  The parabola lies in a plane containing the Z Axis. The angle made
-by the plane with the Y Axis is given by an argument on the command line.
+dimensions.  The parabola lies in a plane containing the Z Axis.
+
+usage:
+   
+#{$0} -b <beg> -e <end> -s <steps> -a <a> -h <h> -k <k> -d <deg>
+
+<beg>    Beginning time.
+<end>    Ending time.
+<steps>  Number of time steps between beginning and end.
+<a>      Acceleration.
+<h>      Time at vertex.
+<k>      Z Coordinate at vertex.
+<deg>    Angle from positive X Axis to positive directrix.
 
 EOF
-   puts("usage: #{$0} <beg> <end> <numsteps> <degrees>\n\n")
    exit 1
 end
+
+usage
 
