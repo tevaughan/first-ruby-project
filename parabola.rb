@@ -1,12 +1,12 @@
 
 class Parabola
-   def initialize(a: 1.0, h: 0.0, k: 0.0)
-      @a = a
-      @h = h
-      @k = k
+   def initialize(w: 1.0, x: 0.0, y: 0.0)
+      @w = w
+      @x0 = x
+      @y0 = y
    end
    def [](x)
-      return @k + @a*(x - @h)**2
+      return @y0 + ((x - @x0)/@w)**2
    end
 end
 
