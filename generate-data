@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require_relative "parabola"
+
+if ARGV.size != 4
+   puts <<EOF
+
+Send to standard output the coordinates for a parabolic trajectory in three
+dimensions.  The parabola lies in a plane containing the Z Axis. The angle made
+by the plane with the Y Axis is given by an argument on the command line.
+
+EOF
+   puts("usage: #{$0} <beg> <end> <numsteps> <degrees>\n\n")
+   exit 1
+end
+

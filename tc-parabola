@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require_relative "parabola"
+require "test/unit"
+
+class TestParabola < Test::Unit::TestCase
+   def test_parabola
+      assert_equal(0, Parabola.new[0])
+      assert_equal(1, Parabola.new[-1])
+      assert_equal(1, Parabola.new[1])
+      assert_equal(4, Parabola.new[-2])
+      assert_equal(4, Parabola.new[2])
+      assert_equal(0, Parabola.new(a: 2)[0])
+      assert_equal(2, Parabola.new(a: 2)[-1])
+      assert_equal(2, Parabola.new(a: 2)[1])
+      assert_equal(8, Parabola.new(a: 2)[-2])
+      assert_equal(8, Parabola.new(a: 2)[2])
+      assert_equal(1, Parabola.new(h: 1)[0])
+      assert_equal(4, Parabola.new(h: 1)[-1])
+      assert_equal(0, Parabola.new(h: 1)[1])
+      assert_equal(9, Parabola.new(h: 1)[-2])
+      assert_equal(1, Parabola.new(h: 1)[2])
+      assert_equal(1, Parabola.new(k: 1)[0])
+      assert_equal(2, Parabola.new(k: 1)[-1])
+      assert_equal(2, Parabola.new(k: 1)[1])
+      assert_equal(5, Parabola.new(k: 1)[-2])
+      assert_equal(5, Parabola.new(k: 1)[2])
+   end
+end
+
