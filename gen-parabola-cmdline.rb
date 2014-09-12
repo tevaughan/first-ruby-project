@@ -13,8 +13,8 @@ class GenParabolaCmdline
    # +args+:: List of command-line arguments to the program. ARGV is passed in
    #          here.
    def self.parse(args)
-      options = self.getDefaultOptions
-      parser = self.makeParser(options)
+      options = getDefaultOptions
+      parser = makeParser(options)
       parser.summary_width = 20
       parser.parse!(args)  # args (ARGV) will have options removed!
       options
@@ -126,7 +126,7 @@ class GenParabolaCmdline
    #             loaded in options before makeParser is called.
    def self.makeParser(options)
       return OptionParser.new do |parser|
-         parser.banner = "\nUsage:  $0 [options]"
+         parser.banner = "\nUsage:  #{$0} [options]"
          parser.separator <<EOF
 
 Send to standard output the coordinates of points along a parabola.  Each line
@@ -135,13 +135,13 @@ of output contains one pair of coordinates separated by white space.
 Options:
 
 EOF
-         self.widthHandler(parser, options)
-         self.xVertHandler(parser, options)
-         self.yVertHandler(parser, options)
-         self.xBegHandler(parser, options)
-         self.xEndHandler(parser, options)
-         self.numStepsHandler(parser, options)
-         self.helpHandler(parser)
+         widthHandler(parser, options)
+         xVertHandler(parser, options)
+         yVertHandler(parser, options)
+         xBegHandler(parser, options)
+         xEndHandler(parser, options)
+         numStepsHandler(parser, options)
+         helpHandler(parser)
          parser.separator ""
       end
    end
