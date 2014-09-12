@@ -1,14 +1,12 @@
 #!/usr/bin/env ruby
 
 require_relative "parabola"
-require_relative "gendata-cmdline"
+require_relative "gen-parabola-cmdline"
 
-options = GenDataCmdLine.parse(ARGV)
+options = GenParabolaCmdline.parse(ARGV)
 parabola = Parabola.new(w: options.w, x: options.x, y: options.y)
-if (options.n == 0)
-   exit
-end
-dx = (options.e - options.b)/options.n
+dx = (options.e - options.b)/options.n  # Size of step.
+
 (0..options.n).each do |step|
    x = options.b + step*dx
    printf("%11.4E %11.4E\n", x, parabola[x])

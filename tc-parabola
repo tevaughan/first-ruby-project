@@ -3,7 +3,9 @@
 require_relative "parabola"
 require "test/unit"
 
+# Framework for testing class Parabola.
 class TestParabola < Test::Unit::TestCase
+   # Perform basic testing on class Parabola.
    def test_parabola
       assert_equal(0, Parabola.new[0])
       assert_equal(1, Parabola.new[-1])
