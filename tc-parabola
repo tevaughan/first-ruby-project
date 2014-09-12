@@ -5,28 +5,33 @@ require "test/unit"
 
 # Framework for testing class Parabola.
 class TestParabola < Test::Unit::TestCase
-   # Perform basic testing on class Parabola.
-   def test_parabola
-      assert_equal(0, Parabola.new[0])
+   def testDefaultParabola
+      assert_equal(0, Parabola.new[ 0])
       assert_equal(1, Parabola.new[-1])
-      assert_equal(1, Parabola.new[1])
+      assert_equal(1, Parabola.new[ 1])
       assert_equal(4, Parabola.new[-2])
-      assert_equal(4, Parabola.new[2])
-      assert_equal(0, Parabola.new(w: 2)[0])
+      assert_equal(4, Parabola.new[ 2])
+   end
+   def testSpecifiedWidth
+      assert_equal(0.00, Parabola.new(w: 2)[ 0])
       assert_equal(0.25, Parabola.new(w: 2)[-1])
-      assert_equal(0.25, Parabola.new(w: 2)[1])
-      assert_equal(1, Parabola.new(w: 2)[-2])
-      assert_equal(1, Parabola.new(w: 2)[2])
-      assert_equal(1, Parabola.new(x: 1)[0])
+      assert_equal(0.25, Parabola.new(w: 2)[ 1])
+      assert_equal(1.00, Parabola.new(w: 2)[-2])
+      assert_equal(1.00, Parabola.new(w: 2)[ 2])
+   end
+   def testSpecifiedHorizontalVertexPos
+      assert_equal(1, Parabola.new(x: 1)[ 0])
       assert_equal(4, Parabola.new(x: 1)[-1])
-      assert_equal(0, Parabola.new(x: 1)[1])
+      assert_equal(0, Parabola.new(x: 1)[ 1])
       assert_equal(9, Parabola.new(x: 1)[-2])
-      assert_equal(1, Parabola.new(x: 1)[2])
-      assert_equal(1, Parabola.new(y: 1)[0])
+      assert_equal(1, Parabola.new(x: 1)[ 2])
+   end
+   def testSpecifiedVerticalVertexPos
+      assert_equal(1, Parabola.new(y: 1)[ 0])
       assert_equal(2, Parabola.new(y: 1)[-1])
-      assert_equal(2, Parabola.new(y: 1)[1])
+      assert_equal(2, Parabola.new(y: 1)[ 1])
       assert_equal(5, Parabola.new(y: 1)[-2])
-      assert_equal(5, Parabola.new(y: 1)[2])
+      assert_equal(5, Parabola.new(y: 1)[ 2])
    end
 end
 
