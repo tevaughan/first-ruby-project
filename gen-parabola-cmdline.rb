@@ -43,80 +43,80 @@ class GenParabolaCmdline
       wdef = "By default, W=#{options.w}"
       parser.on("-w", "--width W", Float, wdsc, wdef) do |w|
          if w <= 0.0
-            puts "GenParabolaCmdline::parse: ERROR: " +
-                 "Width must be positive, not #{w}\n\n"
             puts parser
-            exit 1
+            raise "Width must be positive, not #{w}"
          end
          options.w = w
       end
    end
 
-   # Define what to do when the horizontal coordinate of the vertex is
+   # Define what to do when the horizontal coordinate of the vertex be
    # encountered.
    # +parser+::  Parser to which definition will be attached.
    # +options+:: Option values loaded with defaults on entry.
    def self.xVertHandler(parser, options)
       xdsc = "X coordinate of vertex."
       xdef = "By default, X=#{options.x}"
-      parser.on("-x", "--x-coord X", Float, xdsc, xdef) do |x|
+      parser.on("-x", "--x-coord X", Float, xdsc + " " + xdef) do |x|
          options.x = x
       end
    end
 
-   # Define what to do when the vertical coordinate of the vertex is
+   # Define what to do when the vertical coordinate of the vertex be
    # encountered.
    # +parser+::  Parser to which definition will be attached.
    # +options+:: Option values loaded with defaults on entry.
    def self.yVertHandler(parser, options)
       ydsc = "Y coordinate of vertex."
       ydef = "By default, Y=#{options.y}"
-      parser.on("-y", "--y-coord Y", Float, ydsc, ydef) do |y|
+      parser.on("-y", "--y-coord Y", Float, ydsc + " " + ydef) do |y|
          options.y = y
       end
    end
 
+   # Define what to do when the beginning x coordinate be encountered.
    # +parser+::  Parser to which definition will be attached.
    # +options+:: Option values loaded with defaults on entry.
    def self.xBegHandler(parser, options)
       bdsc = "Beginning x coordinate."
       bdef = "By default, B=#{options.b}"
-      parser.on("-b", "--x-beg B", Float, bdsc, bdef) do |b|
+      parser.on("-b", "--x-beg B", Float, bdsc + " " + bdef) do |b|
          options.b = b
       end
    end
 
+   # Define what to do when the ending x coordinate be encountered.
    # +parser+::  Parser to which definition will be attached.
    # +options+:: Option values loaded with defaults on entry.
    def self.xEndHandler(parser, options)
       edsc = "Ending x coordinate."
       edef = "By default, E=#{options.e}"
-      parser.on("-e", "--x-end E", Float, edsc, edef) do |e|
+      parser.on("-e", "--x-end E", Float, edsc + " " + edef) do |e|
          options.e = e
       end
    end
 
+   # Define what to do when the number of steps be encountered.
    # +parser+::  Parser to which definition will be attached.
    # +options+:: Option values loaded with defaults on entry.
    def self.numStepsHandler(parser, options)
       ndsc = "Number of steps between B and E."
       ndef = "By default, N=#{options.n}"
-      parser.on("-n", "--num-steps N", Integer, ndsc, ndef) do |n|
+      parser.on("-n", "--num-steps N", Integer, ndsc + " " + ndef) do |n|
          if n < 1
-            puts "GenParabolaCmdline::parse: ERROR: " +
-                 "number of steps must be positive, not #{n}\n\n"
             puts parser
-            exit 1
+            raise "number of steps must be positive, not #{n}"
          end
          options.n = n
       end
    end
 
+   # Define what to do when the user ask for help.
    # +parser+::  Parser to which definition will be attached.
    def self.helpHandler(parser)
       parser.on("-h", "--help", "Show this message.") do
          puts parser
-         exit 0
+         exit
       end
    end
 
@@ -126,6 +126,7 @@ class GenParabolaCmdline
    #             loaded in options before makeParser is called.
    def self.makeParser(options)
       return OptionParser.new do |parser|
+         parser.banner = "\nUsage:  $0 [options]"
          parser.separator <<EOF
 
 Send to standard output the coordinates of points along a parabola.  Each line
@@ -141,6 +142,7 @@ EOF
          self.xEndHandler(parser, options)
          self.numStepsHandler(parser, options)
          self.helpHandler(parser)
+         parser.separator ""
       end
    end
 end

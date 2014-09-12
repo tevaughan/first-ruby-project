@@ -7,7 +7,7 @@ class Parabola
    # +x+:: Horizontal coordinate of the vertex.
    # +y+:: Vertical coordinate of the vertex.
    def initialize(w: 1.0, x: 0.0, y: 0.0)
-      @w = w
+      @w  = w
       @x0 = x
       @y0 = y
    end
