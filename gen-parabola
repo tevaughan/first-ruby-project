@@ -3,10 +3,16 @@
 require_relative "parabola"
 require_relative "gen-parabola-cmdline"
 
+# Extract options from the command line.
 options = GenParabolaCmdline.parse(ARGV)
+
+# Specify the width of the parabola and the location of the vertex.
 parabola = Parabola.new(w: options.w, x: options.x, y: options.y)
+
 dx = (options.e - options.b)/options.n  # Size of step.
 
+# Take steps across x, and print at each step the coordinates of the
+# corresponding point on the parabola.
 (0..options.n).each do |step|
    x = options.b + step*dx
    printf("%11.4E %11.4E\n", x, parabola[x])
